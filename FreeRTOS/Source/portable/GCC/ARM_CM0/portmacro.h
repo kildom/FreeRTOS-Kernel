@@ -109,6 +109,16 @@ extern void vClearInterruptMaskFromISR( uint32_t ulMask )  __attribute__((naked)
 
 #define portMEMORY_BARRIER() __asm volatile( "" ::: "memory" )
 
+#ifndef portSUPPRESS_TICKS_AND_SLEEP
+	extern void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime );
+	#define portSUPPRESS_TICKS_AND_SLEEP( xExpectedIdleTime ) vPortSuppressTicksAndSleep( xExpectedIdleTime )
+#endif
+
+#ifndef portSHORT_SLEEP
+	extern void vPortShortSleep( );
+	#define portSHORT_SLEEP( ) vPortShortSleep(  )
+#endif
+
 #ifdef __cplusplus
 }
 #endif

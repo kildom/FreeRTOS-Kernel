@@ -3433,14 +3433,14 @@ static portTASK_FUNCTION( prvIdleTask, pvParameters )
 					}
 					else
 					{
-						mtCOVERAGE_TEST_MARKER();
+						portSHORT_SLEEP();
 					}
 				}
 				( void ) xTaskResumeAll();
 			}
 			else
 			{
-				mtCOVERAGE_TEST_MARKER();
+				portSHORT_SLEEP();
 			}
 		}
 		#endif /* configUSE_TICKLESS_IDLE */
