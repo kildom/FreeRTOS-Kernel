@@ -235,6 +235,11 @@ portFORCE_INLINE static void vPortSetBASEPRI( uint32_t ulNewMaskValue )
 
 #define portMEMORY_BARRIER() __asm volatile( "" ::: "memory" )
 
+#ifndef portSHORT_SLEEP
+	extern void vPortShortSleep( );
+	#define portSHORT_SLEEP( ) vPortShortSleep(  )
+#endif
+
 #ifdef __cplusplus
 }
 #endif

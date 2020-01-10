@@ -773,3 +773,17 @@ static void vPortEnableVFP( void )
 #endif /* configASSERT_DEFINED */
 
 
+
+void vPortShortSleep( void )
+{
+	__asm volatile( "cpsid i" ::: "memory" );
+	__asm volatile( "dsb" );
+	__asm volatile( "isb" );
+    if (eTaskConfirmSleepModeStatus() != eAbortSleep)
+    {
+		__asm volatile( "dsb" ::: "memory" );
+		__asm volatile( "wfi" );
+		__asm volatile( "isb" );
+    }
+	__asm volatile( "cpsie i" ::: "memory" );
+}
