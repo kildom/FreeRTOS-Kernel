@@ -319,8 +319,6 @@ void xPortPendSVHandler( void )
 }
 /*-----------------------------------------------------------*/
 
-#define configUSE_TICKLESS_IDLE 1
-
 #if( configUSE_TICKLESS_IDLE == 1 )
 static volatile uint32_t rtcCounterCopy = 0;
 #endif
