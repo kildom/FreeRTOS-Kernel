@@ -404,11 +404,9 @@ void vPortSuppressTicksAndSleep( TickType_t xExpectedIdleTime )
 	configPRE_SLEEP_PROCESSING( xModifiableIdleTime );
 	if( xModifiableIdleTime > 0 )
 	{
-        NRF_GPIO->OUTSET = (1 << 22);
 		__asm volatile( "dsb" ::: "memory" );
 		__asm volatile( "wfi" );
 		__asm volatile( "isb" );
-        NRF_GPIO->OUTCLR = (1 << 22);
 	}
 	configPOST_SLEEP_PROCESSING( xExpectedIdleTime );
 
@@ -468,11 +466,9 @@ void vPortShortSleep( void )
 	__asm volatile( "isb" );
     if (eTaskConfirmSleepModeStatus() != eAbortSleep)
     {
-        NRF_GPIO->OUTSET = (1 << 22);
 		__asm volatile( "dsb" ::: "memory" );
 		__asm volatile( "wfi" );
 		__asm volatile( "isb" );
-        NRF_GPIO->OUTCLR = (1 << 22);
     }
 	__asm volatile( "cpsie i" ::: "memory" );
 }
